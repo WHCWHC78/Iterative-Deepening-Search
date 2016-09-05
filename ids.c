@@ -4,6 +4,7 @@
 #include <unistd.h>
 
 #include "ids.h"
+#include "hash.h"
 
 enum STATUS depth_limited_search(struct node *node, 
         struct problem *problem, 
@@ -25,12 +26,16 @@ enum STATUS depth_limited_search(struct node *node,
         uint8_t count;
 
         for (count = 4; (status != SUCCESS) && count; --count) {
-            if (((problem->actions(node->state[0], node->action)) >> 
-                        (count - 1)) & 1) {
+            if (((problem->actions(node->state[0])) >> (count - 1)) & 1) {
                 struct node *child = 
                     child_node(problem, node, 1 << (count - 1));
-                status = 
-                    depth_limited_search(child, problem, solution, limit - 1);
+
+                if (insert_hash(hash(child->state)))
+                    status = depth_limited_search(
+                            child, 
+                            problem, 
+                            solution, 
+                            limit - 1);
             }
         }
 

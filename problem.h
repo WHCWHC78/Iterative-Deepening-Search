@@ -11,7 +11,7 @@
 
 struct problem {
     uint8_t initial_state[9];
-    uint8_t (*actions)(uint8_t blank_pos, uint8_t last_act); 
+    uint8_t (*actions)(uint8_t blank_pos); 
     uint8_t *(*result)(uint8_t *state, uint8_t action);
     uint8_t (*goal_test)(uint8_t *state);
 };

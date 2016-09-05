@@ -44,15 +44,15 @@ static void random_initial_state(uint8_t *initial_state)
     /** } */
 
     // from the book
-    /** initial_state[0] = 4; */
-    /** initial_state[1] = 8; */
-    /** initial_state[2] = 1; */
-    /** initial_state[3] = 7; */
-    /** initial_state[4] = 2; */
-    /** initial_state[5] = 3; */
-    /** initial_state[6] = 5; */
-    /** initial_state[7] = 0; */
-    /** initial_state[8] = 6; */
+    initial_state[0] = 4;
+    initial_state[1] = 8;
+    initial_state[2] = 1;
+    initial_state[3] = 7;
+    initial_state[4] = 2;
+    initial_state[5] = 3;
+    initial_state[6] = 5;
+    initial_state[7] = 0;
+    initial_state[8] = 6;
 
     // from http://w01fe.com/blog/2009/01/the-hardest-eight-puzzle-instances-take-31-moves-to-solve/
     // the first hardest 8-puzzle instance
@@ -90,20 +90,20 @@ static void random_initial_state(uint8_t *initial_state)
     /** initial_state[8] = 1; */
 
     // the worst 8-puzzle instance
-    initial_state[0] = 4;
-    initial_state[1] = 8;
-    initial_state[2] = 7;
-    initial_state[3] = 6;
-    initial_state[4] = 3;
-    initial_state[5] = 0;
-    initial_state[6] = 1;
-    initial_state[7] = 2;
-    initial_state[8] = 5;
+    /** initial_state[0] = 4; */
+    /** initial_state[1] = 8; */
+    /** initial_state[2] = 7; */
+    /** initial_state[3] = 6; */
+    /** initial_state[4] = 3; */
+    /** initial_state[5] = 0; */
+    /** initial_state[6] = 1; */
+    /** initial_state[7] = 2; */
+    /** initial_state[8] = 5; */
 }
 
 // param[in]    state: current state
 // return possible actions
-static uint8_t actions(uint8_t blank_pos, uint8_t last_act)
+static uint8_t actions(uint8_t blank_pos)
 {
     uint8_t acts = 0;
 
@@ -134,23 +134,6 @@ static uint8_t actions(uint8_t blank_pos, uint8_t last_act)
             break;
         case 8:
             acts = LEFT | UP;
-            break;
-        default:
-            break;
-    }
-
-    switch (last_act) {
-        case LEFT:
-            acts &= (~RIGHT);
-            break;
-        case UP:
-            acts &= (~DOWN);
-            break;
-        case RIGHT:
-            acts &= (~LEFT);
-            break;
-        case DOWN:
-            acts &= (~UP);
             break;
         default:
             break;
